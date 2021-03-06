@@ -1,0 +1,12 @@
+.classes {
+    max-height: 90vh;
+}
+
+.classes__row{
+    display: flex;
+    justify-content: space-around;
+}
+
+.classCard {
+    margin: 0 10px 30px;
+}

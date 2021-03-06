@@ -1,0 +1,62 @@
+.guide__body {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.guide__top {
+    display: flex;
+    justify-content: center;
+}
+
+.guide__content {
+    flex: 0.8;
+    background: lightgrey;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: -5px;
+    height: 80vh;
+}
+
+.guides{
+    flex: 0.2;
+    height: 95%;
+}
+
+.guide__title {
+    background: white;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 200px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.guide__title:hover{
+    background: lightgrey;
+}
+
+.webViewer{
+    height: 95%;
+}
+
+.guide__link{
+    display: flex;
+    justify-content: space-around;
+}
+
+.uploadForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.uploadForm__row {
+    display: flex;
+    justify-content: center;
+}
+
+.plusPadding {
+    padding: 0 75px;
+}

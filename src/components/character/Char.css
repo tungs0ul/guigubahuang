@@ -1,0 +1,29 @@
+.char {
+    display: flex;
+    justify-content: space-around;
+}
+
+.char__values {
+    flex: 0.5;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.char__options {
+    flex: 0.3;
+    padding-left: 10px;
+    margin: 0 auto 0;
+}
+
+.char__info {
+    flex: 0.2;
+}
+
+.char__values__table {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.char__values__table__div {
+    max-height: 800px;
+}

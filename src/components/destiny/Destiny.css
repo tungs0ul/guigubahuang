@@ -1,0 +1,35 @@
+.destinies{
+    max-height: 75vh;
+    margin-right: 100px;
+}
+
+.destinies__row{
+    display: flex;
+    justify-content: space-around;
+}
+
+.destinyCard {
+    margin-bottom: 50px;
+    border: solid 1px grey;
+
+}
+
+.destiny__title{
+    text-align: center;
+    background-color: lightyellow;
+}
+
+.destiny__description{
+    max-width: 225px;
+}
+
+.destiny{
+    justify-content: center;
+}
+
+.destiny__search{
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 50px;
+}
+
