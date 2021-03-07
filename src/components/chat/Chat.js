@@ -61,7 +61,7 @@ function Chat() {
 
   return (
     <div className="chat">
-      <div className="chat__window" ref={chatRef}>
+      <div className="chat__window autoflow" ref={chatRef}>
         {messages?.length
           ? messages.map((e, idx) => (
               <div
@@ -108,7 +108,11 @@ function Chat() {
           onChange={handleChangeMsg}
           onKeyDown={handleKeyDown}
         />
-        <SendRoundedIcon onClick={handleSubmit} fontSize="large" />
+        <SendRoundedIcon
+          style={{ cursor: "pointer" }}
+          onClick={handleSubmit}
+          fontSize="large"
+        />
       </div>
     </div>
   );

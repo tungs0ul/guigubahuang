@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import "./App.css";
-import Nav from "./components/Nav";
+import Nav from "./components/nav/Nav";
 import Chat from "./components/chat/Chat";
 import { AuthProvider } from "./provider/AuthProvider";
 

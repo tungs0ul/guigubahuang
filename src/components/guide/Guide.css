@@ -15,12 +15,13 @@
     border: 1px solid;
     border-radius: 20px;
     padding: -5px;
-    height: 80vh;
+    height: 82vh;
 }
 
 .guides{
     flex: 0.2;
-    height: 95%;
+    height: 82vh;
+    margin-top: -50px;
 }
 
 .guide__title {
@@ -39,6 +40,10 @@
 
 .webViewer{
     height: 95%;
+}
+
+.guide {
+    max-height: 70vh;
 }
 
 .guide__link{

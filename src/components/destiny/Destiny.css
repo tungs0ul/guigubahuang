@@ -1,5 +1,5 @@
 .destinies{
-    max-height: 75vh;
+    height: 100%;
     margin-right: 100px;
 }
 
@@ -11,6 +11,7 @@
 .destinyCard {
     margin-bottom: 50px;
     border: solid 1px grey;
+    border-radius: 3px;
 
 }
 
@@ -25,6 +26,7 @@
 
 .destiny{
     justify-content: center;
+    height: 100%;
 }
 
 .destiny__search{

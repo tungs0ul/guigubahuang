@@ -1,0 +1,23 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    min-height: 4vh;
+    background-color: rgb(39, 39, 42);
+}
+
+.nav-img {
+    flex: 0.1;
+}
+
+.nav-link {
+    margin-top: 10px;
+    display: flex;
+    flex: 0.9;
+    justify-content: space-around;
+    list-style: none;
+}
+
+#logo {
+    width: 160px;
+    height: 100%;
+}

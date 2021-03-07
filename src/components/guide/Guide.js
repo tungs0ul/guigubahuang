@@ -46,7 +46,7 @@ function Guide() {
               </h3>
             ))}
         </div>
-        <div className="guide__content autoflow">
+        <div className="guide__content overflow">
           {guide && (
             <div className="webViewer">
               <object

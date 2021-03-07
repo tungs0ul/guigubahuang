@@ -85,7 +85,7 @@ function Trait() {
   }, [db, itemsPerRow]);
 
   return (
-    <div>
+    <div className="traitsTop">
       <Filter dispatch={dispatch} names={names} />
       <div className="traits">
         {traits?.length &&

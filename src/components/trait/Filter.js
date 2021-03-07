@@ -67,6 +67,7 @@ function Filter({ names, dispatch }) {
             multiple
             options={colors?.length ? colors : ["Loading"]}
             value={color}
+            limitTags={1}
             onChange={(event, newValue) => {
               setColor(newValue);
             }}

@@ -1,5 +1,10 @@
+.traitsTop{
+    height: 100%;
+}
+
 .traits {
-    height: 70vh;
+    /* height: 70vh; */
+    height: 100%;
     margin-right: 50px;
     overflow-y: auto;
 }
@@ -24,7 +29,7 @@
 .trait { 
     width: 250px;
     height: 300px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .trait__body { 
@@ -47,7 +52,7 @@
 }
 
 .filter{
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     justify-content: center;
     text-align: center;
 }
@@ -60,7 +65,7 @@
 
 .filter__options{
     width: 400px;
-    margin: 10px auto 0;
+    margin: 0 auto 0;
 }
 
 .filter__search{
@@ -70,5 +75,4 @@
 .filter__colors{
     flex:0.5;
     margin-right: 150px;
-    margin-top: 8px;
 }
