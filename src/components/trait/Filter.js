@@ -1,22 +1,48 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { useLanguage } from "../../provider/LanguageProvider";
 
 function Filter({ names, dispatch }) {
-  const colors = ["đỏ", "cam", "tím", "lam", "lục", "xám"];
   const [name, setName] = useState("");
+  const { language, texts, languages, getText } = useLanguage();
+  const getColorText = () => {
+    return [
+      getText("color", "red"),
+      getText("color", "orange"),
+      getText("color", "purple"),
+      getText("color", "blue"),
+      getText("color", "green"),
+      getText("color", "grey"),
+    ];
+  };
+
+  const getOptionText = () => {
+    return [
+      getText("stat", "attack"),
+      getText("stat", "defense"),
+      getText("stat", "luck"),
+      getText("stat", "int"),
+      getText("stat", "beauty"),
+      getText("stat", "nature"),
+      getText("stat", "glory"),
+    ];
+  };
+
+  const [colors, setColors] = useState(getColorText());
+
   const [color, setColor] = useState(colors);
+
+  const [options, setOptions] = useState(getOptionText());
+
   const [option, setOption] = useState([]);
 
-  const options = [
-    "công kích",
-    "phòng ngự",
-    "may mắn",
-    "ngộ tính",
-    "mị lực",
-    "tư chất",
-    "danh vọng",
-  ];
+  useEffect(() => {
+    setColors(getColorText());
+    setOptions(getOptionText());
+    setColor([]);
+    setOption([]);
+  }, [language, getText]);
 
   useEffect(() => {
     dispatch({ type: "name", payload: name + "." });
@@ -24,27 +50,51 @@ function Filter({ names, dispatch }) {
 
   useEffect(() => {
     let payload = [];
-    color.forEach((e) => {
-      if (e === "đỏ") {
+    color.forEach((c) => {
+      if (languages.map((l) => texts["color"]["red"][l]).includes(c)) {
         payload.push("red");
-      } else if (e === "cam") {
+      } else if (
+        languages.map((l) => texts["color"]["orange"][l]).includes(c)
+      ) {
         payload.push("orange");
-      } else if (e === "tím") {
+      } else if (
+        languages.map((l) => texts["color"]["purple"][l]).includes(c)
+      ) {
         payload.push("purple");
-      } else if (e === "lam") {
+      } else if (languages.map((l) => texts["color"]["blue"][l]).includes(c)) {
         payload.push("blue");
-      } else if (e === "lục") {
+      } else if (languages.map((l) => texts["color"]["green"][l]).includes(c)) {
         payload.push("green");
-      } else if (e === "xám") {
+      } else if (languages.map((l) => texts["color"]["grey"][l]).includes(c)) {
         payload.push("black");
       }
     });
     dispatch({ type: "color", payload: payload });
-  }, [color, dispatch]);
+  }, [color, dispatch, languages, texts]);
 
   useEffect(() => {
-    dispatch({ type: "option", payload: option });
-  }, [option, dispatch]);
+    let payload = [];
+    option.forEach((o) => {
+      if (languages.map((e) => texts["stat"]["attack"][e]).includes(o)) {
+        payload.push("công kích");
+      } else if (
+        languages.map((e) => texts["stat"]["defense"][e]).includes(o)
+      ) {
+        payload.push("phòng ngự");
+      } else if (languages.map((e) => texts["stat"]["luck"][e]).includes(o)) {
+        payload.push("may mắn");
+      } else if (languages.map((e) => texts["stat"]["beauty"][e]).includes(o)) {
+        payload.push("mị lực");
+      } else if (languages.map((e) => texts["stat"]["int"][e]).includes(o)) {
+        payload.push("ngộ tính");
+      } else if (languages.map((e) => texts["stat"]["nature"][e]).includes(o)) {
+        payload.push("tư chất");
+      } else if (languages.map((e) => texts["stat"]["glory"][e]).includes(o)) {
+        payload.push("danh vọng");
+      }
+    });
+    dispatch({ type: "option", payload: payload });
+  }, [option, dispatch, languages, texts]);
 
   return (
     <div className="filter">
@@ -58,7 +108,11 @@ function Filter({ names, dispatch }) {
               setName(newValue);
             }}
             renderInput={(params) => (
-              <TextField {...params} variant="standard" label="tìm theo tên" />
+              <TextField
+                {...params}
+                variant="standard"
+                label={texts["searchName"][language]}
+              />
             )}
           />
         </div>
@@ -74,7 +128,11 @@ function Filter({ names, dispatch }) {
             filterSelectedOptions
             defaultValue={colors}
             renderInput={(params) => (
-              <TextField {...params} variant="standard" label="màu" />
+              <TextField
+                {...params}
+                variant="standard"
+                label={texts["color"]["color"][language]}
+              />
             )}
           />
         </div>
@@ -90,7 +148,11 @@ function Filter({ names, dispatch }) {
           }}
           filterSelectedOptions
           renderInput={(params) => (
-            <TextField {...params} variant="standard" label="chỉ số" />
+            <TextField
+              {...params}
+              variant="standard"
+              label={texts["stat"]["stat"][language]}
+            />
           )}
         />
       </div>

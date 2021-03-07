@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { useLanguage } from "../../provider/LanguageProvider";
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
 
 function ClassCard({ name, img, description, poem }) {
   const classes = useStyles();
+  const { texts, language } = useLanguage();
   return (
     <div className="classCard">
       <Card className={classes.root}>
@@ -28,7 +30,7 @@ function ClassCard({ name, img, description, poem }) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {name}
+              {texts["class"][name][language]}
             </Typography>
             <div className="class__poem overflow">
               {poem &&

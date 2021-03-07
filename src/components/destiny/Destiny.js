@@ -5,10 +5,12 @@ import DestinyCard from "./DestinyCard";
 import "./Destiny.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { useLanguage } from "../../provider/LanguageProvider";
 
 function Destiny() {
   const db = useFireStore("destiny", "id", "asc");
   const [destinies, setDestinies] = useState([]);
+  const { getText } = useLanguage();
 
   const [itemsPerRow, setItemsPerRow] = useState(
     Math.floor((window.innerWidth * 0.7) / 330)
@@ -53,7 +55,11 @@ function Destiny() {
             setName(newValue);
           }}
           renderInput={(params) => (
-            <TextField {...params} variant="standard" label="tìm theo tên" />
+            <TextField
+              {...params}
+              variant="standard"
+              label={getText("searchName")}
+            />
           )}
         />
       </div>

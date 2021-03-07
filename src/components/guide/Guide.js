@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import "./Guide.css";
 import useFireStore from "../../firebase/hooks";
 import Button from "@material-ui/core/Button";
-// import GuideForm from "./GuideForm";
+import { useLanguage } from "../../provider/LanguageProvider";
+import { useAuth } from "../../provider/AuthProvider";
+import UploadGuide from "./UploadGuide";
 
 function Guide() {
   const guides = useFireStore("guide", "time", "desc");
-  // const [uploading, setUploading] = useState(false);
+
+  const [uploading, setUploading] = useState(false);
+
+  const { getText } = useLanguage();
+  const { currentUser } = useAuth();
 
   const [guide, setGuide] = useState({
     name: "",
@@ -17,22 +23,24 @@ function Guide() {
 
   return (
     <div className="guide">
-      <div className="guide__top">
-        <div>
-          <Button
-            onClick={() => {
-              alert("Bạn chưa nạp lần đầu :)) tính năng này chưa cập nhật");
-              // setUploading(true);
-            }}
-            variant="contained"
-          >
-            Upload hướng dẫn
-          </Button>
-          {/* <GuideForm uploading={uploading} setUploading={setUploading} /> */}
-        </div>
-      </div>
       <div className="guide__body">
         <div className="guides autoflow">
+          <div className="guides__button">
+            <Button
+              color="primary"
+              onClick={() => {
+                if (!currentUser) {
+                  alert(getText("loginError"));
+                  return;
+                }
+                setUploading(true);
+              }}
+              variant="contained"
+            >
+              Submit Guide
+            </Button>
+            {uploading && <UploadGuide setUploading={setUploading} />}
+          </div>
           {guides?.length &&
             guides.map((e, idx) => (
               <h3

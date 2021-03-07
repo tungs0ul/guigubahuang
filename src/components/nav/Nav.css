@@ -3,6 +3,7 @@
     justify-content: space-between;
     min-height: 4vh;
     background-color: rgb(39, 39, 42);
+    width: 100%;
 }
 
 .nav-img {
@@ -20,4 +21,28 @@
 #logo {
     width: 160px;
     height: 100%;
+}
+
+.language{
+    max-width: 100px;
+    background-color: rgb(39, 39, 42);
+    display: flex;
+}
+
+.language__input {
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.language img{
+    width: 30px;
+    height: 20px;
+    margin-top: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.topNav {
+    display: flex;
+    justify-content: space-between;
 }

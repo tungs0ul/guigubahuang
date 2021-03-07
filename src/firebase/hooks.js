@@ -1,6 +1,32 @@
 import { useEffect, useState } from "react";
-import { firestore } from "./config";
+import { firestore, storage } from "./config";
 import firebase from "firebase";
+
+export const useStorage = (file) => {
+  const [progress, setProgress] = useState(0);
+  const [error, setError] = useState(null);
+  const [url, setUrl] = useState(null);
+
+  useEffect(() => {
+    const storageRef = storage.ref(file.name);
+    storageRef.put(file).on(
+      "state_changed",
+      (snap) => {
+        let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+        setProgress(percentage);
+      },
+      (err) => {
+        setError(err);
+      },
+      async () => {
+        const url = await storageRef.getDownloadURL();
+        setUrl(url);
+      }
+    );
+  }, [file]);
+
+  return { progress, url, error };
+};
 
 const useFireStore = (
   collection,
@@ -27,9 +53,10 @@ const useFireStore = (
 
 export const writeFireStore = async (collection, value) => {
   try {
-    await firestore
-      .collection(collection)
-      .add({ ...value, time: firebase.firestore.FieldValue.serverTimestamp() });
+    await firestore.collection(collection).add({
+      ...value,
+      time: firebase.firestore.FieldValue.serverTimestamp(),
+    });
     return "";
   } catch (e) {
     return "error";

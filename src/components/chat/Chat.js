@@ -4,8 +4,10 @@ import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import TextField from "@material-ui/core/TextField";
 import { useAuth } from "../../provider/AuthProvider";
 import useFireStore, { writeFireStore } from "../../firebase/hooks";
+import { useLanguage } from "../../provider/LanguageProvider";
 
 function Chat() {
+  const { getText } = useLanguage();
   const messages = useFireStore("message", "time", "asc", 50);
   const [msg, setMsg] = useState("");
   const [blocking, setBlocking] = useState(false);
@@ -35,14 +37,14 @@ function Chat() {
     if (blocking) {
       const timer = setTimeout(() => {
         setBlocking(false);
-      }, 10000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [blocking]);
 
   const handleSubmit = (e) => {
     if (!currentUser) {
-      alert("đăng nhập để sử dụng tính năng chat");
+      alert(getText("loginError"));
       return;
     }
     if (!blocking) {
@@ -55,7 +57,7 @@ function Chat() {
       setMsg("");
       setBlocking(true);
     } else {
-      alert("bạn chat quá nhanh, vui lòng đợi 10s");
+      alert(getText("fastError") + "(3s)");
     }
   };
 

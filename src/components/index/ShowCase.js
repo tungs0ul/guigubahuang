@@ -7,13 +7,14 @@ import useFireStore, { writeFireStore } from "../../firebase/hooks";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useAuth } from "../../provider/AuthProvider";
+import { useLanguage } from "../../provider/LanguageProvider";
 
 import { splitArray } from "../../utils";
 
 function ShowCase() {
   const [video, setVideo] = useState("QxxKRpWC3x4");
   const [blocking, setBlocking] = useState(false);
-
+  const { getText } = useLanguage();
   useEffect(() => {
     if (blocking) {
       const timer = setTimeout(() => {
@@ -33,41 +34,40 @@ function ShowCase() {
 
   const handleSubmit = (e) => {
     if (blocking) {
-      alert("bạn đang tải quá nhiều videos");
+      alert(getText("fastError"));
       return;
     }
     if (!currentUser) {
-      alert("đăng nhập để upload");
+      alert(getText("loginError"));
       return;
     }
     let link = linkRef.current.value;
+    if (!link) {
+      alert(getText("invalid"));
+      linkRef.current.value = "";
+      return;
+    }
     link = link.replace("https://", "");
     link = link.split("/")[1];
+    if (!link) {
+      alert(getText("invalid"));
+      linkRef.current.value = "";
+      return;
+    }
     if (link.includes("&")) {
       let temp = link.split("&").filter((e) => e.includes("v="));
       link = temp[0];
     }
     link = link.replace("watch?v=", "");
-    let found = false;
-    for (let i = 0; i < videos.length; ++i) {
-      if (e.id === link) {
-        alert("video đã tồn tại");
-        linkRef.current.value = "";
-        found = true;
-        return;
-      }
-    }
-    if (!found) {
-      writeFireStore("videos", {
-        check: false,
-        like: 0,
-        view: 0,
-        id: link,
-      });
-      alert("cảm ơn bạn đã upload, video sẽ được kiểm tra tính nếu hợp lệ");
-      setBlocking(true);
-      linkRef.current.value = "";
-    }
+    writeFireStore("videos", {
+      like: 0,
+      view: 0,
+      id: link,
+      check: false,
+    });
+    alert(getText("thanksError"));
+    setBlocking(true);
+    linkRef.current.value = "";
   };
 
   const handleResize = () => {
@@ -103,7 +103,7 @@ function ShowCase() {
         <div className="video__upload">
           <div className="video__a">
             <div className="video__upload__link">
-              <TextField label="submit youtube clip" inputRef={linkRef} />
+              <TextField label="Youtube Link" inputRef={linkRef} />
             </div>
             <div className="video__upload__button">
               <Button variant="contained" onClick={handleSubmit}>
