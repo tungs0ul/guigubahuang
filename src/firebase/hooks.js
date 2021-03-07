@@ -20,7 +20,7 @@ const useFireStore = (
       });
 
     return () => unsub();
-  }, [collection, order, rule]);
+  }, [collection, order, rule, limit]);
 
   return docs;
 };

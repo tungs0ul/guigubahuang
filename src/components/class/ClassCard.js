@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
@@ -16,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-function ClassCard({ name, img, description }) {
+function ClassCard({ name, img, description, poem }) {
   const classes = useStyles();
   return (
     <div className="classCard">
@@ -31,9 +30,23 @@ function ClassCard({ name, img, description }) {
             <Typography gutterBottom variant="h5" component="h2">
               {name}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {description}
-            </Typography>
+            <div className="class__poem overflow">
+              {poem &&
+                poem.split(".").map((e) => (
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {e}
+                  </Typography>
+                ))}
+            </div>
+            <div className="class__description overflow">
+              <Typography variant="body2" color="textSecondary" component="p">
+                {description}
+              </Typography>
+            </div>
           </CardContent>
         </CardActionArea>
       </Card>

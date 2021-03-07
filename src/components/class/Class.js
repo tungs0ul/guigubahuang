@@ -26,7 +26,12 @@ function Class() {
       {classes.map((info, idx) => (
         <div className="classes__row" key={idx}>
           {info.map((e) => (
-            <ClassCard name={e.name} img={e.img} description={e.description} />
+            <ClassCard
+              name={e.name}
+              poem={e.poem}
+              img={e.img}
+              description={e.description}
+            />
           ))}
         </div>
       ))}
