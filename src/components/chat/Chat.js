@@ -57,7 +57,7 @@ function Chat() {
       setMsg("");
       setBlocking(true);
     } else {
-      alert(getText("fastError") + "(3s)");
+      alert(getText("fastError") + " (3s)");
     }
   };
 
@@ -104,7 +104,7 @@ function Chat() {
         <TextField
           id="outlined-basic"
           size="small"
-          placeholder="bấm Enter để gửi tin nhắn"
+          placeholder={getText("chat")}
           fullWidth
           value={msg}
           onChange={handleChangeMsg}

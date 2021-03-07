@@ -5,7 +5,7 @@ import Nav from "./components/nav/Nav";
 import Chat from "./components/chat/Chat";
 import { AuthProvider } from "./provider/AuthProvider";
 
-const ShowCase = React.lazy(() => import("./components/index/ShowCase"));
+const ShowCase = React.lazy(() => import("./components/videos/ShowCase"));
 // const Skill = React.lazy(() => import("./components/Skill"));
 const Class = React.lazy(() => import("./components/class/Class"));
 const Destiny = React.lazy(() => import("./components/destiny/Destiny"));
@@ -13,6 +13,7 @@ const Trait = React.lazy(() => import("./components/trait/Trait"));
 const Quest = React.lazy(() => import("./components/Quest"));
 const Guide = React.lazy(() => import("./components/guide/Guide"));
 const Char = React.lazy(() => import("./components/character/Char"));
+const HomePage = React.lazy(() => import("./components/index/HomePage"));
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
             <div className="app__content">
               <Switch>
                 <React.Suspense fallback={<p>Loading</p>}>
-                  <Route path="/" exact component={ShowCase} />
+                  <Route path="/videos" exact component={ShowCase} />
+                  <Route path="/" exact component={HomePage} />
                   <Route path="/class" exact component={Class} />
                   {/* <Route path="/skill" exact component={Skill} /> */}
                   <Route path="/trait" exact component={Trait} />

@@ -44,6 +44,9 @@ function Nav() {
           <Link style={navStyle} to="/">
             <li>{getText("home")}</li>
           </Link>
+          <Link style={navStyle} to="/videos">
+            <li>Videos</li>
+          </Link>
           <Link style={navStyle} to="/trait">
             <li>{getText("trait")}</li>
           </Link>

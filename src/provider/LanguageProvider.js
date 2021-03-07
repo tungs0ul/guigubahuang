@@ -331,4 +331,9 @@ const texts = {
       DE: "Fehlende Information",
     },
   },
+  chat: {
+    VN: "Bấm Enter để gửi tin nhắn",
+    EN: "Press Enter to send message",
+    DE: "Enter drücken, um Nachricht zu senden",
+  },
 };

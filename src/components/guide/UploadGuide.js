@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLanguage } from "../../provider/LanguageProvider";
 import ProgressBar from "./ProgressBar";
 
-function UploadGuide({ setUploading }) {
+function UploadGuide({ setUploading, setBlocking }) {
   const { getText } = useLanguage();
   const [uploadingFile, setUploadingFile] = useState(false);
 
@@ -107,6 +107,7 @@ function UploadGuide({ setUploading }) {
               autor={autor}
               name={name}
               setUploading={setUploading}
+              setBlocking={setBlocking}
             />
           )}
         </div>

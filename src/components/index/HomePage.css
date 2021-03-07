@@ -1,0 +1,8 @@
+.homePage__title {
+    display: flex;
+    justify-content: center;
+}
+
+.homePage{
+    height: 90vh;
+}

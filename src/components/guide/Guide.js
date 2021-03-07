@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Guide.css";
 import useFireStore from "../../firebase/hooks";
 import Button from "@material-ui/core/Button";
@@ -13,6 +13,17 @@ function Guide() {
 
   const { getText } = useLanguage();
   const { currentUser } = useAuth();
+
+  const [blocking, setBlocking] = useState(false);
+
+  useEffect(() => {
+    if (blocking) {
+      const timer = setTimeout(() => {
+        setBlocking(false);
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [blocking]);
 
   const [guide, setGuide] = useState({
     name: "",
@@ -33,13 +44,22 @@ function Guide() {
                   alert(getText("loginError"));
                   return;
                 }
+                if (blocking) {
+                  alert(getText("fastError") + " (10s)");
+                  return;
+                }
                 setUploading(true);
               }}
               variant="contained"
             >
               Submit Guide
             </Button>
-            {uploading && <UploadGuide setUploading={setUploading} />}
+            {uploading && (
+              <UploadGuide
+                setBlocking={setBlocking}
+                setUploading={setUploading}
+              />
+            )}
           </div>
           {guides?.length &&
             guides.map((e, idx) => (
