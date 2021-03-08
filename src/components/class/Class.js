@@ -3,6 +3,7 @@ import useFireStore from "../../firebase/hooks";
 import "./Class.css";
 import { splitArray } from "../../utils";
 import ClassCard from "./ClassCard";
+import { motion } from "framer-motion";
 
 function Class() {
   const db = useFireStore("class", "id", "asc");
@@ -22,7 +23,11 @@ function Class() {
   }, [db, itemsPerRow]);
 
   return (
-    <div className="classes autoflow">
+    <motion.div
+      initial={{ x: "-100vh" }}
+      animate={{ x: 0 }}
+      className="classes autoflow"
+    >
       {classes.map((info, idx) => (
         <div className="classes__row" key={idx}>
           {info.map((e) => (
@@ -35,7 +40,7 @@ function Class() {
           ))}
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 

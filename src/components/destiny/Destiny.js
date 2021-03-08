@@ -6,6 +6,8 @@ import "./Destiny.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useLanguage } from "../../provider/LanguageProvider";
+import { motion } from "framer-motion";
+import Loading from "../loading/Loading";
 
 function Destiny() {
   const db = useFireStore("destiny", "id", "asc");
@@ -41,7 +43,11 @@ function Destiny() {
   }, [name, db, itemsPerRow]);
 
   return (
-    <div className="destiny">
+    <motion.div
+      initial={{ x: "-100vh" }}
+      animate={{ x: 0 }}
+      className="destiny"
+    >
       <div className="destiny__search">
         <Autocomplete
           freeSolo
@@ -65,7 +71,7 @@ function Destiny() {
       </div>
       {
         <div className="destinies autoflow">
-          {destinies?.length &&
+          {destinies?.length ? (
             destinies.map((e, idx) => (
               <div className="destinies__row" key={idx}>
                 {e.map((destiny, id) => (
@@ -77,10 +83,13 @@ function Destiny() {
                   />
                 ))}
               </div>
-            ))}
+            ))
+          ) : (
+            <Loading />
+          )}
         </div>
       }
-    </div>
+    </motion.div>
   );
 }
 

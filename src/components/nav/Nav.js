@@ -99,9 +99,15 @@ function Nav() {
               name: "language",
             }}
           >
-            <option value={"VN"}>VN</option>
-            <option value={"EN"}>EN</option>
-            <option value={"DE"}>DE</option>
+            <option className="language__option" value={"VN"}>
+              Tiếng Việt
+            </option>
+            <option className="language__option" value={"EN"}>
+              English
+            </option>
+            <option className="language__option" value={"DE"}>
+              Deutsch
+            </option>
           </Select>
         </div>
       </div>

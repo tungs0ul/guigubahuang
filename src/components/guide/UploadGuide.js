@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "../../provider/LanguageProvider";
 import ProgressBar from "./ProgressBar";
+import { motion } from "framer-motion";
 
 function UploadGuide({ setUploading, setBlocking }) {
   const { getText } = useLanguage();
@@ -41,20 +42,24 @@ function UploadGuide({ setUploading, setBlocking }) {
   const [error, setError] = useState("");
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       className="uploadGuide"
       style={{
         position: "absolute",
         backgroundColor: "rgba(0,0,0,0.5)",
-        width: window.innerWidth,
-        height: window.innerHeight,
-        top: "-30px",
-        left: "-5px",
+        width: window.innerWidth + "px",
+        height: window.innerHeight - 45 + "px",
+        top: "-60px",
+        left: "-30px",
         zIndex: 999,
       }}
       onClick={handleClick}
     >
-      <div
+      <motion.div
+        initial={{ y: "-100vh" }}
+        animate={{ y: 0 }}
         className="uploadGuide__form uploading"
         style={{
           display: "flex",
@@ -62,7 +67,7 @@ function UploadGuide({ setUploading, setBlocking }) {
           justifyContent: "space-evenly",
           position: "absolute",
           backgroundColor: "white",
-          width: "50%",
+          width: "30%",
           height: "50%",
           minWidth: "600px",
           minHeight: "400px",
@@ -111,8 +116,8 @@ function UploadGuide({ setUploading, setBlocking }) {
             />
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

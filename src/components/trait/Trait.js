@@ -4,6 +4,8 @@ import TraitCard from "./TraitCard";
 import { splitArray } from "../../utils";
 import "./Trait.css";
 import Filter from "./Filter";
+import { motion } from "framer-motion";
+import Loading from "../loading/Loading";
 
 function Trait() {
   const db = useFireStore("trait", "colorId", "asc");
@@ -85,10 +87,14 @@ function Trait() {
   }, [db, itemsPerRow]);
 
   return (
-    <div className="traitsTop">
+    <motion.div
+      initial={{ x: "-100vh" }}
+      animate={{ x: 0 }}
+      className="traitsTop"
+    >
       <Filter dispatch={dispatch} names={names} />
       <div className="traits">
-        {traits?.length &&
+        {traits?.length ? (
           traits.map((e, idx) => (
             <div className="traits__row" key={idx}>
               {e.map((trait, id) => (
@@ -101,9 +107,12 @@ function Trait() {
                 />
               ))}
             </div>
-          ))}
+          ))
+        ) : (
+          <Loading />
+        )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

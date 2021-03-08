@@ -4,6 +4,7 @@ import "./App.css";
 import Nav from "./components/nav/Nav";
 import Chat from "./components/chat/Chat";
 import { AuthProvider } from "./provider/AuthProvider";
+import { motion } from "framer-motion";
 
 const ShowCase = React.lazy(() => import("./components/videos/ShowCase"));
 // const Skill = React.lazy(() => import("./components/Skill"));
@@ -22,7 +23,11 @@ function App() {
         <div className="app">
           <Nav />
           <div className="app__body">
-            <div className="app__content">
+            <motion.div
+              className="app__content"
+              initial={{ x: "-100vh" }}
+              animate={{ x: 0 }}
+            >
               <Switch>
                 <React.Suspense fallback={<p>Loading</p>}>
                   <Route path="/videos" exact component={ShowCase} />
@@ -36,7 +41,7 @@ function App() {
                   <Route path="/char" exact component={Char} />
                 </React.Suspense>
               </Switch>
-            </div>
+            </motion.div>
             <div className="app__chat">
               <Chat />
             </div>

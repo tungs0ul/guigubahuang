@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
+import { motion } from "framer-motion";
 
 function HomePage() {
   const imgs = [
@@ -17,7 +18,11 @@ function HomePage() {
   }, [index]);
 
   return (
-    <div className="homePage autoflow">
+    <motion.div
+      initial={{ x: "-100vh" }}
+      animate={{ x: 0 }}
+      className="homePage autoflow"
+    >
       <div className="homePage__content">
         <h1 className="homePage__title">鬼谷八荒Guigubahuang</h1>
       </div>
@@ -96,7 +101,7 @@ function HomePage() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

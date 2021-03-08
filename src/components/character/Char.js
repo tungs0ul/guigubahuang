@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Option from "./Option";
 import "./Char.css";
+import { motion } from "framer-motion";
 
 function Char() {
   const char = [
@@ -256,7 +257,7 @@ function Char() {
   };
 
   return (
-    <div className="char">
+    <motion.div initial={{ x: "-100vh" }} animate={{ x: 0 }} className="char">
       <div className="char__values">
         <table>
           <thead />
@@ -341,7 +342,7 @@ function Char() {
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

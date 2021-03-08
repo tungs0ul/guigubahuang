@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import { useAuth } from "../../provider/AuthProvider";
 import useFireStore, { writeFireStore } from "../../firebase/hooks";
 import { useLanguage } from "../../provider/LanguageProvider";
+import { motion } from "framer-motion";
 
 function Chat() {
   const { getText } = useLanguage();
@@ -62,7 +63,7 @@ function Chat() {
   };
 
   return (
-    <div className="chat">
+    <motion.div initial={{ y: "-100vh" }} animate={{ y: 0 }} className="chat">
       <div className="chat__window autoflow" ref={chatRef}>
         {messages?.length
           ? messages.map((e, idx) => (
@@ -116,7 +117,7 @@ function Chat() {
           fontSize="large"
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

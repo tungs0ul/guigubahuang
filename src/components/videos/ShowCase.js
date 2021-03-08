@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useAuth } from "../../provider/AuthProvider";
 import { useLanguage } from "../../provider/LanguageProvider";
-
+import { motion } from "framer-motion";
 import { splitArray } from "../../utils";
 
 function ShowCase() {
@@ -98,7 +98,7 @@ function ShowCase() {
   };
 
   return (
-    <div>
+    <motion.div initial={{ x: "-100vh" }} animate={{ x: 0 }}>
       <div className="video">
         <div className="video__upload">
           <div className="video__a">
@@ -132,7 +132,7 @@ function ShowCase() {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

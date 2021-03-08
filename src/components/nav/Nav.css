@@ -24,7 +24,7 @@
 }
 
 .language{
-    max-width: 100px;
+    max-width: 150px;
     background-color: rgb(39, 39, 42);
     display: flex;
 }
@@ -45,4 +45,16 @@
 .topNav {
     display: flex;
     justify-content: space-between;
+}
+
+.language__option {
+    /* background-color: white; */
+    font-weight: normal;
+}
+
+.language__option:hover {
+    /* background-color: rgba(0,0,0,0.5); */
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
 }

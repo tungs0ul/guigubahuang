@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 import { useLanguage } from "../../provider/LanguageProvider";
 import { useAuth } from "../../provider/AuthProvider";
 import UploadGuide from "./UploadGuide";
+import { motion } from "framer-motion";
+import Loading from "../loading/Loading";
 
 function Guide() {
   const guides = useFireStore("guide", "time", "desc");
@@ -33,7 +35,7 @@ function Guide() {
   });
 
   return (
-    <div className="guide">
+    <motion.div initial={{ x: "-100vh" }} animate={{ x: 0 }} className="guide">
       <div className="guide__body">
         <div className="guides autoflow">
           <div className="guides__button">
@@ -61,7 +63,7 @@ function Guide() {
               />
             )}
           </div>
-          {guides?.length &&
+          {guides?.length ? (
             guides.map((e, idx) => (
               <h3
                 key={idx}
@@ -72,7 +74,10 @@ function Guide() {
               >
                 {e.name}
               </h3>
-            ))}
+            ))
+          ) : (
+            <Loading />
+          )}
         </div>
         <div className="guide__content overflow">
           {guide && (
@@ -90,7 +95,7 @@ function Guide() {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
